@@ -1,9 +1,18 @@
 @extends('layouts.template')
 @section('content')
+
 <div class="card">
     <div class="card-header">
-        Sites
+        <div class="row">
+            <div class="col">
+                <h3>Sites</h3>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a class="btn btn-outline-primary" href="{{route('site.create')}}">Add +</a>
+            </div>
+        </div>
     </div>
+
     <div class="card-body">
         <table class="table">
             <thead>
@@ -18,9 +27,13 @@
                         <td>{{$site->url}}</td>
                         <td>
                             <div class="d-flex" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn mx-1 btn-outline-warning">Ver</button>
-                                <button type="button" class="btn mx-1 btn-outline-success">Editar</button>
-                                <button type="button" class="btn mx-1 btn-outline-danger">Excluir</button>
+                                {{-- <a class="btn mx-1 btn-outline-warning">Ver</a> --}}
+                                <a  href="{{route('site.edit', $site->id)}}" class="btn mx-1 btn-outline-success">Editar</a>
+                                <form action="{{ route('site.destroy', $site->id) }}" method="post">
+                                    @csrf()
+                                    @method('DELETE')
+                                    <button type="submit" class="btn mx-1 btn-outline-danger">Excluir</button>
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -28,5 +41,11 @@
             </tbody>
         </table>
     </div>
-  </div>
+</div>
+@if (session()->has('message'))
+    <x-bladewind.alert
+        type="success">
+        {{session('message')}}
+    </x-bladewind.alert>
+@endif
 @endsection

@@ -30,7 +30,16 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+
+    /**
+     * Sites
+     */
     Route::get('/site', [SiteController::class, 'index'])->name('site.index');
+    Route::get('/site/create', [SiteController::class, 'create'])->name('site.create');
+    Route::post('/site/store', [SiteController::class, 'store'])->name('site.store');
+    Route::get('/site/{site}/edit', [SiteController::class, 'edit'])->name('site.edit');
+    Route::put('/site/{site}/update', [SiteController::class, 'update'])->name('site.update');
+    Route::delete('/site/{site}/destroy', [SiteController::class, 'destroy'])->name('site.destroy');
 });
 
 require __DIR__.'/auth.php';

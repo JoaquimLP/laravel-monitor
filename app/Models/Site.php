@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,14 @@ class Site extends Model
         'url',
         'user_id',
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('user', function (Builder $builder){
+
+            $builder->where('user_id', auth()->user()->id);
+        });
+    }
 
     public function user(): BelongsTo
     {
