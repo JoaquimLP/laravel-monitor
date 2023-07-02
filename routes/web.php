@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\EndpointController;
 use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/site/{site}/edit', [SiteController::class, 'edit'])->name('site.edit');
     Route::put('/site/{site}/update', [SiteController::class, 'update'])->name('site.update');
     Route::delete('/site/{site}/destroy', [SiteController::class, 'destroy'])->name('site.destroy');
+
+    Route::get('/sites/{site_id}/endpoints', [EndpointController::class, 'index'])->name('endpoints.index');
+    Route::get('/sites/{site_id}/endpoint/create', [EndpointController::class, 'create'])->name('endpoints.create');
+    Route::post('/sites/{site}/endpoint/store', [EndpointController::class, 'store'])->name('endpoints.store');
 });
 
 require __DIR__.'/auth.php';

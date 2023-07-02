@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreUpdateSiteRequest extends FormRequest
+class StoreUpdateEndpointRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,10 @@ class StoreUpdateSiteRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->site->id ?? null;
         return [
-            'url' => ['required', 'url', 'max:255', Rule::unique('sites')->where('user_id', auth()->user()->id)]
+            'endpoint' => ['required', 'max:255', Rule::unique('endpoints')->where('site_id', $id)],
+            'frequency' => ['required', 'max:255'],
         ];
     }
 }
