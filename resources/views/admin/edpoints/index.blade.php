@@ -31,15 +31,14 @@
                         <td>{{$endpoint->frequency}}</td>
                         <td>{{$endpoint->next_check}}</td>
                         <td>
-                            {{-- <div class="d-flex" role="group" aria-label="Basic mixed styles example">
-                                <a  href="{{route('site.edit', $site->id)}}" class="btn mx-1 btn-outline-success">Editar</a>
-                                <a  href="{{route('endpoints.index', $site->id)}}" class="btn mx-1 btn-outline-primary">Edpoint</a>
-                                <form action="{{ route('site.destroy', $site->id) }}" method="post">
+                            <div class="d-flex" role="group" aria-label="Basic mixed styles example">
+                                <a  href="{{route('endpoints.edit', [$site->id, $endpoint->id])}}" class="btn mx-1 btn-outline-success">Editar</a>
+                                <form action="{{ route('endpoints.destroy', [$site->id, $endpoint->id]) }}" method="post">
                                     @csrf()
                                     @method('DELETE')
                                     <button type="submit" class="btn mx-1 btn-outline-danger">Excluir</button>
                                 </form>
-                            </div> --}}
+                            </div>
                         </td>
                     </tr>
                 @empty

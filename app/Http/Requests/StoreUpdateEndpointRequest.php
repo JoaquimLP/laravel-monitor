@@ -24,7 +24,7 @@ class StoreUpdateEndpointRequest extends FormRequest
     {
         $id = $this->site->id ?? null;
         return [
-            'endpoint' => ['required', 'max:255', Rule::unique('endpoints')->where('site_id', $id)],
+            'endpoint' => ['required', 'max:255', Rule::unique('endpoints')->where('site_id', $id)->ignore($this->segment(5))],
             'frequency' => ['required', 'max:255'],
         ];
     }

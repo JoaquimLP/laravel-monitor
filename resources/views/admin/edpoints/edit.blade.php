@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="card-body">
-        <form class="row g-3" action="{{route('site.update', $site->id)}}" method="post">
+        <form class="row g-3" action="{{route('endpoints.update', [$site->id, $endpoint->id])}}" method="post">
             @csrf
             @method('PUT')
             @include('admin.edpoints.form')

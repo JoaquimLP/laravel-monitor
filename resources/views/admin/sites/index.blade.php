@@ -29,7 +29,7 @@
                             <div class="d-flex" role="group" aria-label="Basic mixed styles example">
                                 {{-- <a class="btn mx-1 btn-outline-warning">Ver</a> --}}
                                 <a  href="{{route('site.edit', $site->id)}}" class="btn mx-1 btn-outline-success">Editar</a>
-                                <a  href="{{route('endpoints.index', $site->id)}}" class="btn mx-1 btn-outline-primary">Edpoint</a>
+                                <a  href="{{route('endpoints.index', $site->id)}}" class="btn mx-1 btn-outline-primary">Logs</a>
                                 <form action="{{ route('site.destroy', $site->id) }}" method="post">
                                     @csrf()
                                     @method('DELETE')

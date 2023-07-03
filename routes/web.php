@@ -45,6 +45,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/sites/{site_id}/endpoints', [EndpointController::class, 'index'])->name('endpoints.index');
     Route::get('/sites/{site_id}/endpoint/create', [EndpointController::class, 'create'])->name('endpoints.create');
     Route::post('/sites/{site}/endpoint/store', [EndpointController::class, 'store'])->name('endpoints.store');
+    Route::get('/site/{site}/endpoint/{endpoint}/edit', [EndpointController::class, 'edit'])->name('endpoints.edit');
+    Route::put('/site/{site}/endpoint/{endpoint}/update', [EndpointController::class, 'update'])->name('endpoints.update');
+    Route::delete('/site/{site}/endpoint/{endpoint}/destroy', [EndpointController::class, 'destroy'])->name('endpoints.destroy');
 });
 
 require __DIR__.'/auth.php';
